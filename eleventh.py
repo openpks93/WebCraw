@@ -9,7 +9,7 @@ options.add_argument("disable-gpu")
 
 # Chrome 드라이버 생성(둘 중 하나만 켤것)
 chrome_driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\chromedriver.exe')
-chrome_driver.implicitly_wait(5)
+chrome_driver.implicitly_wait(20)
 chrome_driver.get('http://soffice.11st.co.kr/Index.tmall')
 # 아이디/비밀번호를 입력해준다.
 chrome_driver.find_element_by_id('loginName').send_keys('tg7616')
@@ -19,7 +19,7 @@ chrome_driver.find_element_by_class_name('btn_login').click()
 #판매정산형황
 chrome_driver.find_element_by_xpath('//*[@id="35936"]/a').click()
 #월별 클릭이 안됨
-chrome_driver.find_elements_by_xpath('//*[@id="searchPrdDateCondition"]').click()
+chrome_driver.find_element_by_xpath('//*[@id="search_area"]/div[2]/div[1]/table/tbody/tr[2]/td/span[1]/label[2]').click()
 #검색
 chrome_driver.find_element_by_xpath('//*[@id="btnSearch"]/span/span').click()
 print("webdriver's ready")
