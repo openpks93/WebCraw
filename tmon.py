@@ -7,7 +7,6 @@ options.add_argument('headless')
 options.add_argument('window-size=1920x1080')
 options.add_argument("disable-gpu")
 
-
 # Chrome 드라이버 생성(둘 중 하나만 켤것)
 chrome_driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\chromedriver.exe')
 chrome_driver.implicitly_wait(30)
@@ -128,4 +127,4 @@ pandas.read_json('tmon.json',  encoding='UTF8', orient='index').to_excel('tmon.x
 # 브라우저 종료, 웹 드라이버 종료
 print("This job is finished and close the web browser")
 chrome_driver.quit()
-#
+

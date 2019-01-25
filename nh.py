@@ -36,7 +36,6 @@ Shipping_Method = chrome_driver.find_elements_by_css_selector("body > div > tabl
 buyer = chrome_driver.find_elements_by_css_selector("body > div > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > form > table > tbody > tr > td:nth-child(6)")
 recipient = chrome_driver.find_elements_by_css_selector("body > div > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > form > table > tbody > tr > td:nth-child(7)")
 order_date = chrome_driver.find_elements_by_css_selector("body > div > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > form > table > tbody > tr > td:nth-child(8)")
-
 # Json
 import json
 from collections import OrderedDict

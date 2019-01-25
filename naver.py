@@ -10,7 +10,8 @@ options.add_argument("disable-gpu")
 
 # Chrome 드라이버 생성(둘 중 하나만 켤것)
 chrome_driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\chromedriver.exe')
-chrome_driver.implicitly_wait(10)
+
+chrome_driver.implicitly_wait(20)
 chrome_driver.get('https://sell.smartstore.naver.com/#/naverpay/manage/order')
 # 아이디/비밀번호를 입력해준다.
 chrome_driver.find_element_by_id('loginId').send_keys('tg7616')
@@ -20,26 +21,25 @@ print("webdriver's ready")
 # 크롤링할 사이트 호출
 print("getting url site")
 print("parsing data")
-Item_number = chrome_driver.find_elements_by_css_selector("body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._inflexible_area.inflexible_area > div._body.body > div._table_container > table > tbody > tr:nth-child(1) > td:nth-child(2)")
-product_name = chrome_driver.find_elements_by_css_selector("body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._inflexible_area.inflexible_area > div._body.body > div._table_container > table > tbody > tr:nth-child(1) > td:nth-child(3)")
-tt = chrome_driver.find_elements_by_css_selector('body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._flexible_area.flexible_area > div._body.body > div._table_container > table > tbody > tr:nth-child(1) > td:nth-child(1)')
+Item_Order_Number = chrome_driver.find_elements_by_css_selector("body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._inflexible_area.inflexible_area > div._body.body > div._table_container > table > tbody > tr > td:nth-child(2)")
+Order_Numver = chrome_driver.find_elements_by_css_selector("body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._inflexible_area.inflexible_area > div._body.body > div._table_container > table > tbody > tr > td:nth-child(3)")
+Order_Date = chrome_driver.find_elements_by_css_selector("body > div.npay_content._root > div.napy_sub_content > div:nth-child(2) > div.npay_grid_area > div.grid._detailGrid._grid_container.uio_grid > div._flexible_area.flexible_area > div._body.body > div._table_container > table > tbody > tr > td:nth-child(1)")
 
-
-print(Item_number)
-print(product_name)
-print(tt)
+print(Item_Order_Number)
+print(Order_Numver)
+print(Order_Date)
 # Json
 import json
 from collections import OrderedDict
-LENGTH = min(len(Item_number), len(product_name), len(tt))
+LENGTH = min(len(Item_Order_Number), len(Order_Numver), len(Order_Date))
 products = OrderedDict()
 print("processing data to json")
 
 for idx in range(0, LENGTH):
     products['no_' + str(idx + 1)] = {
-        'Item_Order_Number': Item_number[idx].text,
-        'Order_Number': product_name[idx].text,
-        'tt': tt[idx].text
+        'Item_Order_Number': Item_Order_Number[idx].text,
+        'Order_Number': Order_Numver[idx].text,
+        'Order_Date': Order_Date[idx].text
     }
 
 # json 저장
